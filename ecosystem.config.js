@@ -1,5 +1,5 @@
 // enter your ip of the pi here
-const ip = 'http://192.168.55.17';
+const ip = '192.168.55.17';
 module.exports = {
     apps: [
         {
