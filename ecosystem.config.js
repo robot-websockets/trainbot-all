@@ -44,7 +44,7 @@ module.exports = {
         },
         {
             name: 'proximity-sensor',
-            script: '/home/pi/trainbot-all/proximity-sensor/app.js',
+            script: '/home/pi/trainbot-all/proximity-sensor/distance.py',
             args: ['-S', `${localIpAddress}`],
             interpreter: '/usr/bin/python3.5',
             autorestart: true,
