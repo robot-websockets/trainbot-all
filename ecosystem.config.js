@@ -1,5 +1,5 @@
 // enter your ip of the pi here
-const ip = '192.168.55.17';
+const localIpAddress = '192.168.0.14';
 module.exports = {
     apps: [
         {
@@ -11,7 +11,12 @@ module.exports = {
         {
             name: 'barcode-server',
             script: '/home/pi/trainbot-all/barcode-server/server.py',
-            args: ['-W', `${ip}:5001`, '-V', `${ip}:8081`],
+            args: [
+                '-W',
+                `${localIpAddress}:5001`,
+                '-V',
+                `${localIpAddress}:8081`
+            ],
             interpreter: '/usr/bin/python3.5',
             autorestart: true,
             watch: false
@@ -19,7 +24,12 @@ module.exports = {
         {
             name: 'opencv-server',
             script: '/home/pi/trainbot-all/openCV-server/server.py',
-            args: ['-W', `${ip}:5001`, '-V', `${ip}:8081`],
+            args: [
+                '-W',
+                `${localIpAddress}:5001`,
+                '-V',
+                `${localIpAddress}:8081`
+            ],
             interpreter: '/usr/bin/python3.5',
             autorestart: true,
             watch: false
@@ -27,15 +37,16 @@ module.exports = {
         {
             name: 'motors',
             script: '/home/pi/trainbot-all/motor-controller/main.py',
-            args: ['-W', `${ip}:5001`],
+            args: ['-S', `${localIpAddress}`],
             interpreter: '/usr/bin/python3.5',
             autorestart: true,
             watch: false
         },
         {
-            name: 'proximity-simulator',
-            script: '/home/pi/trainbot-all/proximity-tester/app.js',
-            args: [`--websocket_address=${ip}:5001`],
+            name: 'proximity-sensor',
+            script: '/home/pi/trainbot-all/proximity-sensor/app.js',
+            args: ['-S', `${localIpAddress}`],
+            interpreter: '/usr/bin/python3.5',
             autorestart: true,
             watch: false
         }
